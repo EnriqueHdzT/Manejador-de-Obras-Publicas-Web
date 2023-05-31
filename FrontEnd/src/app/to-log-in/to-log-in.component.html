@@ -1,17 +1,34 @@
-<div class="card">
-  <div class="card-body text-center">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <h2 class="card-title">Login</h2>
-      </li>
-      <li class="list-group-item">
-        <label for="usuario" class="me-5">Nombre de Usuario:</label>
-        <input type="text" id="usuario" />
-      </li>
-      <li class="list-group-item">
-        <label for="contrasenia" class="me-5">Contraseña:</label>
-        <input type="text" name="contrasenia" id="contrasenia" />
-      </li>
-    </ul>
+<div class="container">
+  <div class="card">
+    <div class="card-body text-center">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <h2 class="card-title">Login</h2>
+        </li>
+        <li class="list-group-item">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group clearfix">
+              <label for="userId" class="me-5">Nombre de Usuario:</label>
+              <input
+                class="form-control"
+                formControlName="userId"
+                type="text"
+                id="userId"
+              />
+            </div>
+            <div class="form-group clearfix">
+              <label for="password" class="me-5">Contraseña:</label>
+              <input
+                class="form-control"
+                formControlName="password"
+                type="password"
+                id="password"
+              />
+              <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+          </form>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
