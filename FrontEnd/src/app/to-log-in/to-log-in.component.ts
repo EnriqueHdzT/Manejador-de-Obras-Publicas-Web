@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../_interfaces/login';
 import { AuthService } from '../_services/auth.service';
@@ -11,8 +11,8 @@ import { AuthService } from '../_services/auth.service';
 })
 export class ToLogInComponent implements OnInit {
   model: Login = {
-    userId: '',
-    password: '',
+    userId: 'user1',
+    password: 'password1',
   };
   loginForm: FormGroup;
   message: string;
@@ -21,7 +21,8 @@ export class ToLogInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private ActivatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -29,15 +30,17 @@ export class ToLogInComponent implements OnInit {
       userId: ['', Validators.required],
       password: ['', Validators.required],
     });
-    this.returnUrl = '/';
-    this.authService.logout();
+    this.returnUrl = 'app';
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/app']);
+    }
   }
 
   get f() {
     return this.loginForm.controls;
   }
 
-  login() {
+  onSubmit() {
     if (this.loginForm.invalid) {
       return;
     } else {
@@ -48,9 +51,12 @@ export class ToLogInComponent implements OnInit {
         console.log('Login Succesful');
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('token', this.f['userId'].value);
-        this.router.navigate([this.returnUrl]);
+        this.router.navigate([this.returnUrl], {
+          relativeTo: this.ActivatedRoute,
+        });
       } else {
         this.message = 'Please check your userId and Password';
+        console.log(this.message);
       }
     }
   }

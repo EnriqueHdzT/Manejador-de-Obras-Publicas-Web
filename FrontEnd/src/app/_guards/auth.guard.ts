@@ -5,30 +5,23 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private AuthServ: AuthService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean {
-    if (this.isLoggedIn()) {
+    if (this.AuthServ.isAuthenticated() && this.router.url === '/') {
       return true;
-    }
-    this.router.navigate(['/#']);
-    return false;
-  }
-  public isLoggedIn(): boolean {
-    let status = false;
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      status = true;
     } else {
-      status = false;
+      this.router.navigate(['']);
+      return false;
     }
-    return status;
   }
 }

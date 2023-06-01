@@ -1,18 +1,44 @@
 <div class="card text-center">
   <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="true" href="/">
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a class="nav-link" aria-current="true" routerLink="./">
           Informacion General
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" aria-current="true" href="/#"> Subir Reportes </a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" aria-current="true" routerLink="reportes">
+          Subir Reportes
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" aria-current="true" routerLink="estimaciones">
+          Hacer Estimacion</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" aria-current="true" routerLink="catalogo">
+          Catalogo de Conceptos</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" aria-current="true" routerLink="incidentes">
+          Incidentes</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" aria-current="true" routerLink="archivos">
+          Archivos</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" aria-current="true" href="/#"> Hacer Estimacion</a>
+        <a class="nav-link" aria-current="true" (click)="logout()">Log Out</a>
       </li>
     </ul>
   </div>
-  <div class="card-body">Cuerpo dependiendo de la ventana</div>
+  <router-outlet></router-outlet>
 </div>

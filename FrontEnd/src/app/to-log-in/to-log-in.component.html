@@ -6,7 +6,7 @@
           <h2 class="card-title">Login</h2>
         </li>
         <li class="list-group-item">
-          <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group clearfix">
               <label for="userId" class="me-5">Nombre de Usuario:</label>
               <input
@@ -24,9 +24,9 @@
                 type="password"
                 id="password"
               />
-              <button class="btn btn-primary" type="submit">Login</button>
             </div>
           </form>
+          <button class="btn btn-primary" (click)="onSubmit()">Login</button>
         </li>
       </ul>
     </div>

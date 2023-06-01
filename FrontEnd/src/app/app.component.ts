@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthGuard } from './_guards/auth.guard';
+import { AuthService } from './_services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { AuthGuard } from './_guards/auth.guard';
 export class AppComponent {
   title = 'FrontEnd';
   isLoggedIn: boolean;
-  constructor(private ag: AuthGuard) {
-    this.isLoggedIn = ag.isLoggedIn();
+  constructor(private as: AuthService) {
+    this.isLoggedIn = as.isAuthenticated();
   }
 }

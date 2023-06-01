@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../_services/auth.service';
-
+@Injectable()
 @Component({
   selector: 'app-is-log-in',
   templateUrl: './is-log-in.component.html',
@@ -11,13 +11,13 @@ import { AuthService } from '../_services/auth.service';
 export class IsLogInComponent implements OnInit {
   id: string | null;
 
-  constructor(private roter: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
   }
   logout() {
     this.authService.logout();
-    this.roter.navigate(['/']);
+    this.router.navigate(['/']);
   }
 }
