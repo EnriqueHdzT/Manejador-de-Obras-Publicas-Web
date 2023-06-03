@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Login } from '../_interfaces/login';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -10,10 +9,6 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./to-log-in.component.css'],
 })
 export class ToLogInComponent implements OnInit {
-  model: Login = {
-    userId: 'user1',
-    password: 'password1',
-  };
   loginForm: FormGroup;
   message: string;
   returnUrl: string;
@@ -44,20 +39,8 @@ export class ToLogInComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      if (
-        this.f['userId'].value === this.model.userId &&
-        this.f['password'].value === this.model.password
-      ) {
-        console.log('Login Succesful');
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('token', this.f['userId'].value);
-        this.router.navigate([this.returnUrl], {
-          relativeTo: this.ActivatedRoute,
-        });
-      } else {
-        this.message = 'Please check your userId and Password';
-        console.log(this.message);
-      }
+      this.authService.login(this.f['userId'].value, this.f['password'].value);
+      this.router.navigate(['/app']);
     }
   }
 }
