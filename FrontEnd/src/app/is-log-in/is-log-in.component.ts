@@ -9,13 +9,31 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./is-log-in.component.css'],
 })
 export class IsLogInComponent implements OnInit {
-  id: string | null;
+  rol: string | null;
+  isAdmin: Boolean = false;
+  isSuperIntendente: Boolean = false;
+  isSupervisor: Boolean = false;
+  isResidente: Boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+    this.rol = localStorage.getItem('rol');
 
-  ngOnInit(): void {
-    this.id = localStorage.getItem('token');
+    // Rol Verification
+    if (this.rol === 'ADMIN') {
+      this.isAdmin = true;
+    } else if (this.rol === 'SUPINT') {
+      this.isSuperIntendente = true;
+    } else if (this.rol === 'SUPVIS') {
+      this.isSupervisor = true;
+    } else if (this.rol === 'RES') {
+      this.isResidente = true;
+    } else {
+      console.log('IsLogInComponent on Constructor, Rol Verification');
+      this.logout();
+    }
   }
+
+  ngOnInit(): void {}
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);

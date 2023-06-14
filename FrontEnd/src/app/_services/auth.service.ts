@@ -6,19 +6,24 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   model = [
     {
+      userId: 'user0',
+      password: 'password0',
+      rol: 'ADMIN',
+    },
+    {
       userId: 'user1',
       password: 'password1',
-      rol: 'superintendente',
+      rol: 'SUPINT',
     },
     {
       userId: 'user2',
       password: 'password2',
-      rol: 'supervisor',
+      rol: 'SUPVIS',
     },
     {
       userId: 'user3',
       password: 'password3',
-      rol: 'Residente',
+      rol: 'RES',
     },
   ];
   constructor() {}
@@ -29,15 +34,12 @@ export class AuthService {
         password === this.model[i].password
       ) {
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('token', username);
         localStorage.setItem('rol', this.model[i].rol);
       }
     }
   }
   logout(): void {
-    localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
+    localStorage.clear();
   }
   isAuthenticated(): boolean {
     if (localStorage.getItem('isLoggedIn') === 'true') {

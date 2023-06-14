@@ -1,44 +1,223 @@
-<div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-tabs card-header-tabs">
-      <li
-        class="nav-item"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="nav-link" aria-current="true" routerLink="./">
-          Informacion General
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" aria-current="true" routerLink="reportes">
-          Subir Reportes
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" aria-current="true" routerLink="estimaciones">
-          Hacer Estimacion</a
-        >
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" aria-current="true" routerLink="catalogo">
-          Catalogo de Conceptos</a
-        >
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" aria-current="true" routerLink="incidentes">
-          Incidentes</a
-        >
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" aria-current="true" routerLink="archivos">
-          Archivos</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" aria-current="true" (click)="logout()">Log Out</a>
-      </li>
-    </ul>
+<div *ngIf="isAdmin">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs text-center">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="true"
+            routerLink="./"
+          >
+            Informacion General
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="true"
+            routerLink="reportes"
+            routerLinkActive="active"
+          >
+            Gestionar Usuarios
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="true"
+            routerLink="archivos"
+            routerLinkActive="active"
+          >
+            Archivos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="true" (click)="logout()">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <router-outlet></router-outlet>
+</div>
+<div *ngIf="isSuperIntendente">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs text-center">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="true"
+            routerLink="./"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Informacion General
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="catalogo"
+          >
+            Catalogo de Conceptos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="estimaciones"
+          >
+            Hacer Estimacion</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="archivos"
+          >
+            Archivos</a
+          >
+        </li>
+        <li class="nav-item ms-auto">
+          <a class="btn btn-danger" aria-current="true" (click)="logout()"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<div *ngIf="isSupervisor">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs text-center">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="true"
+            routerLink="./"
+          >
+            Informacion General
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="reportes"
+          >
+            Subir Reportes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="estimaciones"
+          >
+            Hacer Estimacion</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="incidentes"
+          >
+            Incidencias</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="archivos"
+          >
+            Archivos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="true" (click)="logout()">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<div *ngIf="isResidente">
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs text-center">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            aria-current="true"
+            routerLink="./"
+          >
+            Informacion General
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="reportes"
+          >
+            Subir Reportes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="estimaciones"
+          >
+            Hacer Estimacion</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="true"
+            routerLink="archivos"
+          >
+            Archivos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="true" (click)="logout()">Log Out</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
