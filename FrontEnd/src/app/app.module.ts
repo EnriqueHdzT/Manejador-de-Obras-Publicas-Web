@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './_guards/auth.guard';
+import { IsConceptValidGuard } from './_guards/is-concept-valid.guard';
 
 import { AppComponent } from './app.component';
 import { IsLogInComponent } from './is-log-in/is-log-in.component';
@@ -15,6 +16,7 @@ import { ConceptsComponent } from './is-log-in/concepts/concepts.component';
 import { EstimatesComponent } from './is-log-in/estimates/estimates.component';
 import { ReportsComponent } from './is-log-in/reports/reports.component';
 import { IncidentsComponent } from './is-log-in/incidents/incidents.component';
+import { ConceptsOfCertainFrontComponent } from './is-log-in/concepts/concepts-of-certain-front/concepts-of-certain-front.component';
 
 const appRoutes: Routes = [
   { path: '', component: ToLogInComponent },
@@ -30,6 +32,13 @@ const appRoutes: Routes = [
       {
         path: 'catalogo',
         component: ConceptsComponent,
+        children: [
+          {
+            path: ':id',
+            component: ConceptsOfCertainFrontComponent,
+            canActivate: [IsConceptValidGuard],
+          },
+        ],
       },
       {
         path: 'estimaciones',
@@ -71,6 +80,7 @@ const appRoutes: Routes = [
     EstimatesComponent,
     ReportsComponent,
     IncidentsComponent,
+    ConceptsOfCertainFrontComponent,
   ],
   imports: [
     BrowserModule,
