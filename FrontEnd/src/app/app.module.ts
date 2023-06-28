@@ -17,6 +17,7 @@ import { EstimatesComponent } from './is-log-in/estimates/estimates.component';
 import { ReportsComponent } from './is-log-in/reports/reports.component';
 import { IncidentsComponent } from './is-log-in/incidents/incidents.component';
 import { ConceptsOfCertainFrontComponent } from './is-log-in/concepts/concepts-of-certain-front/concepts-of-certain-front.component';
+import { ManageProjectsComponent } from './is-log-in/manage-projects/manage-projects.component';
 
 const appRoutes: Routes = [
   { path: '', component: ToLogInComponent },
@@ -57,6 +58,14 @@ const appRoutes: Routes = [
         component: UpdateFilesComponent,
       },
       {
+        path: 'gestionarUsuarios',
+        component: ManageUsersComponent,
+      },
+      {
+        path: 'gestionarProyecto',
+        component: ManageProjectsComponent,
+      },
+      {
         path: '**',
         redirectTo: '',
       },
@@ -81,6 +90,7 @@ const appRoutes: Routes = [
     ReportsComponent,
     IncidentsComponent,
     ConceptsOfCertainFrontComponent,
+    ManageProjectsComponent,
   ],
   imports: [
     BrowserModule,
